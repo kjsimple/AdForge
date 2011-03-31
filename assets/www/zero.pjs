@@ -1,0 +1,70 @@
+htmlCanvas = document.getElementById("test");
+zo_text = "Hello Web!";
+
+class Sudoku {
+    private int startX;
+    private int startY;
+    ArrayList elements;
+    
+    public Sudoku() {
+        startX = 10;
+        startY = 10;
+    }
+    public void draw() {
+        drawGrid();
+        for (int i = 0; i < elements.size(); i++) {
+            elements[i].draw();
+        }
+    }
+    private void drawGrid() {
+
+    }
+    public int getStartX() {
+        return startX;
+    }
+    public int getStartY() {
+        return startY;
+    }
+}
+
+class SudokuElement {
+    public Sudoku game;
+    public SudokuElement(Sudoku g) {
+        game = g;
+    }
+    public void draw() {
+        if (game == null) {
+            return ;
+        }
+    }
+}
+
+void setup() {
+    size(screen.width/2,screen.height/2);
+    background(125);
+    fill(255);
+    frameRate(15);
+    String[] fontList = PFont.list();
+    println(fontList);
+}
+
+void draw() {
+    background( 100 );
+    htmlCanvas.getContext("2d").font = "bold 14px Arial";
+//    textFont(fontA, 14);
+    text(zo_text, 20, 20);
+    text(width, 80, 20);
+}
+
+void mouseMoved() {
+    zo_text = mouseX;
+}
+
+void mouseClicked() {
+    zo_text = mouseX;
+    println(Test.uu);
+}
+
+void mouseDragged() {
+    zo_text = mouseX;
+}
