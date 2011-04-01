@@ -41,7 +41,7 @@ class SudokuElement {
 
 void setup() {
     size(screen.width/2,screen.height/2);
-    background(125);
+    background(0);
     fill(255);
     frameRate(15);
     String[] fontList = PFont.list();
