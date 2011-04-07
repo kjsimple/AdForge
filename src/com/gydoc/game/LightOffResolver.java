@@ -15,7 +15,9 @@ public class LightOffResolver {
     private int minSteps;
     private boolean flag;
     private List<String> elems = new ArrayList<String>();
+    private List<String> bestElems = new ArrayList<String>();
     private int[][] originData;
+    private boolean canBeResolved = false;
 
     public LightOffResolver(int[][] _data) {
         originData = _data.clone();
@@ -59,17 +61,9 @@ public class LightOffResolver {
     }
 
     public boolean resolve() {
-        boolean res = false;
         minSteps = 1000;
-        for (int i = 0; i < data.length; i++) {
-            start = i;
-            init();
-            System.out.println("i = " + i);
-            if (handleElement(i)) {
-                res = true;
-            }
-        }
-        return res;
+        handleElement(0);
+        return canBeResolved;
     }
 
     private boolean checkElements() {
@@ -81,14 +75,29 @@ public class LightOffResolver {
         return true;
     }
 
-    private void finished() {
-        if (elems.size() < minSteps && elems.size() > 0) {
-            System.out.println("Finished......");
-            minSteps = elems.size();
-            for (String s : elems) {
-                System.out.println("s = " + s);
-            }
+    public void printSolution() {
+        if (!canBeResolved) {
+            return ;
         }
+        for (String s : elems) {
+            System.out.println("s = " + s);
+        }
+    }
+
+    private void finished() {
+//        if (elems.size() < minSteps && elems.size() > 0) {
+        canBeResolved = true;
+        if (elems.size() < minSteps) {
+            bestElems.clear();
+            bestElems.addAll(elems);
+        }
+        elems.clear();
+//            System.out.println("Finished......");
+//            minSteps = elems.size();
+//            for (String s : elems) {
+//                System.out.println("s = " + s);
+//            }
+//        }
     }
 
     private int convertRow(int index) {
@@ -99,33 +108,30 @@ public class LightOffResolver {
         return index % cols;
     }
 
-    private boolean handleElement(int index) {
-        boolean res = checkElements();
-        if (res) {
+    private void handleElement(int index) {
+        if (index >= rows*cols) {
+            return ;
+        }
+        if (checkElements()) {
             finished();
-            return true;
+            return ;
         }
-        if (start == index && flag) {
-            return false;
-        }
-        flag = true;
 
         pressElement(index);
         elems.add("<"+convertRow(index)+","+convertCol(index)+">");
         if (checkElements()) {
             finished();
-            return true;
+            return ;
         }
-        if (handleElement(nextIndex(index))) {
-            return true;
-        }
+        handleElement(nextIndex(index));
+
         pressElement(index);
-        elems.remove(elems.size()-1);
-        return handleElement(nextIndex(index));
+        if (!elems.isEmpty()) elems.remove(elems.size() - 1);
+        handleElement(nextIndex(index));
     }
 
     private int nextIndex(int index) {
-        return (index+1) % (cols*rows);
+        return ++index;
     }
 
     public static void main(String[] args) {
@@ -137,6 +143,7 @@ public class LightOffResolver {
                           {0,0,0,0,0}
                          });
         resolver.resolve();
+        resolver.printSolution();
     }
 
 }
