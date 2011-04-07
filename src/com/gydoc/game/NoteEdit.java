@@ -88,6 +88,9 @@ public class NoteEdit extends Activity {
         String body = bodyText.getText().toString();
         if (rowId == null) {
             long id = dbHelper.createNote(title, body);
+            for (int i = 0; i < 10; i++) {
+                dbHelper.createNote(title, body);
+            }
             if (id > 0) {
                 rowId = id;
             }
