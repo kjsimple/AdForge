@@ -61,7 +61,6 @@ public class LightOffResolver {
     public boolean resolve() {
         boolean res = false;
         minSteps = 1000;
-        init();
         for (int i = 0; i < data.length; i++) {
             start = i;
             init();

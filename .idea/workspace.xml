@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05dbb11c-b91e-4a13-9f55-61967121831b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="D:\test\AdForge\src\Test.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gydoc/game/LightOffResolver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gydoc/game/LightOffResolver.java" afterPath="$PROJECT_DIR$/src/com/gydoc/game/LightOffResolver.java" />
     </list>
     <ignored path="AdForge.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -118,7 +117,7 @@
       <file leaf-file-name="LightOffResolver.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/gydoc/game/LightOffResolver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="5" selection-start="1335" selection-end="1335" vertical-scroll-proportion="0.33458647">
+            <state line="68" column="23" selection-start="1616" selection-end="1616" vertical-scroll-proportion="0.42105263">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -742,7 +741,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gydoc/game/LightOffResolver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="5" selection-start="1335" selection-end="1335" vertical-scroll-proportion="0.33458647">
+        <state line="68" column="23" selection-start="1616" selection-end="1616" vertical-scroll-proportion="0.42105263">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
