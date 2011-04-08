@@ -117,6 +117,7 @@ public class LightOffResolver {
         elems.add("<"+convertRow(index)+","+convertCol(index)+">");
         if (checkElements()) {
             finished();
+            return ;
         }
         handleElement(nextIndex(index));
 
@@ -132,10 +133,10 @@ public class LightOffResolver {
     public static void main(String[] args) {
         LightOffResolver resolver = new LightOffResolver(new int[][] {
                           {0,0,0,0,0},
+                          {0,1,0,0,0},
+                          {0,0,0,0,1},
                           {0,1,0,1,0},
-                          {0,0,0,0,0},
-                          {0,0,0,0,0},
-                          {0,0,0,0,0}
+                          {0,0,0,1,0}
                          });
         resolver.resolve();
         resolver.printSolution();
