@@ -11,9 +11,7 @@ public class LightOffResolver {
     private int rows;
     private int cols;
     private boolean[] data;
-    private int start;
     private int minSteps;
-    private boolean flag;
     private List<String> elems = new ArrayList<String>();
     private List<String> bestElems = new ArrayList<String>();
     private int[][] originData;
@@ -25,7 +23,6 @@ public class LightOffResolver {
     }
 
     private void init() {
-        flag = false;
         elems.clear();
 
         rows = originData.length;
@@ -61,8 +58,11 @@ public class LightOffResolver {
     }
 
     public boolean resolve() {
+        long start = System.currentTimeMillis();
         minSteps = 1000;
         handleElement(0);
+        long end = System.currentTimeMillis();
+        System.out.println("start = " + (end - start));
         return canBeResolved;
     }
 
@@ -79,25 +79,21 @@ public class LightOffResolver {
         if (!canBeResolved) {
             return ;
         }
-        for (String s : elems) {
+        for (String s : bestElems) {
             System.out.println("s = " + s);
         }
     }
 
     private void finished() {
-//        if (elems.size() < minSteps && elems.size() > 0) {
+        if (elems.isEmpty()) {
+            return ;
+        }
         canBeResolved = true;
         if (elems.size() < minSteps) {
+            minSteps = elems.size();
             bestElems.clear();
             bestElems.addAll(elems);
         }
-        elems.clear();
-//            System.out.println("Finished......");
-//            minSteps = elems.size();
-//            for (String s : elems) {
-//                System.out.println("s = " + s);
-//            }
-//        }
     }
 
     private int convertRow(int index) {
@@ -121,12 +117,11 @@ public class LightOffResolver {
         elems.add("<"+convertRow(index)+","+convertCol(index)+">");
         if (checkElements()) {
             finished();
-            return ;
         }
         handleElement(nextIndex(index));
 
         pressElement(index);
-        if (!elems.isEmpty()) elems.remove(elems.size() - 1);
+        elems.remove(elems.size() - 1);
         handleElement(nextIndex(index));
     }
 
@@ -137,9 +132,9 @@ public class LightOffResolver {
     public static void main(String[] args) {
         LightOffResolver resolver = new LightOffResolver(new int[][] {
                           {0,0,0,0,0},
-                          {0,0,1,0,0},
+                          {0,1,0,1,0},
                           {0,0,0,0,0},
-                          {0,0,0,0,1},
+                          {0,0,0,0,0},
                           {0,0,0,0,0}
                          });
         resolver.resolve();
